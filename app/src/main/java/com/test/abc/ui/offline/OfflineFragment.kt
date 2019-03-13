@@ -58,5 +58,7 @@ class OfflineFragment : Fragment() {
             layoutManager = LinearLayoutManager(context)
             adapter = viewAdapter
         }
+
+        viewModel.getAllSavedFood()
     }
 }
