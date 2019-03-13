@@ -11,13 +11,16 @@ import com.test.abc.data.FoodRepository
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
-class MainViewModel(context: Context) : ViewModel() {
+class MainViewModel : ViewModel() {
 
     val searchResult = MutableLiveData<List<Food>>()
     val offlineFood = MutableLiveData<List<FoodEntity>>()
     val loading = MutableLiveData<Int>()
+    private lateinit var foodRespository: FoodRepository
 
-    val foodRespository = FoodRepository(context)
+    fun init(context: Context) {
+        foodRespository = FoodRepository(context)
+    }
 
     fun searchFood(query: String) {
         Log.d("SEARCH", query)
