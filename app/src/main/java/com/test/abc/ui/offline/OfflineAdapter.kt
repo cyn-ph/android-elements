@@ -7,8 +7,10 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.test.abc.R
 import com.test.abc.data.local.FoodEntity
+import javax.inject.Inject
 
-class OfflineAdapter : RecyclerView.Adapter<OfflineAdapter.RowViewHolder>() {
+class OfflineAdapter
+@Inject constructor() : RecyclerView.Adapter<OfflineAdapter.RowViewHolder>() {
 
     private var offlineItems = emptyList<FoodEntity>()
 

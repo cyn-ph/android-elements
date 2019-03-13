@@ -6,9 +6,7 @@ import com.test.abc.ui.main.MainActivity;
 import com.test.abc.ui.main.MainViewModel;
 import com.test.abc.ui.main.MainViewModelFactory;
 import com.test.abc.ui.offline.OfflineFragment;
-import com.test.abc.ui.offline.di.OfflineModule;
 import com.test.abc.ui.search.SearchFragment;
-import com.test.abc.ui.search.di.SearchModule;
 import dagger.Module;
 import dagger.Provides;
 import dagger.android.ContributesAndroidInjector;
@@ -32,7 +30,7 @@ public abstract class MainModule {
         return new SearchFragment();
     }
 
-    @ContributesAndroidInjector(modules = SearchModule.class)
+    @ContributesAndroidInjector()
     abstract SearchFragment contributeWithSearchFragment();
 
     @Provides
@@ -40,6 +38,6 @@ public abstract class MainModule {
         return new OfflineFragment();
     }
 
-    @ContributesAndroidInjector(modules = OfflineModule.class)
+    @ContributesAndroidInjector()
     abstract OfflineFragment contributeWithOfflineFragment();
 }

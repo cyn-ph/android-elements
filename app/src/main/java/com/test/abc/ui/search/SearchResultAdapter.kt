@@ -9,8 +9,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.test.abc.R
 import com.test.abc.data.remote.Food
 import com.test.abc.ui.main.MainViewModel
+import javax.inject.Inject
 
-class SearchResultAdapter(val viewModel: MainViewModel) : RecyclerView.Adapter<SearchResultAdapter.RowViewHolder>() {
+class SearchResultAdapter
+@Inject constructor(val viewModel: MainViewModel) : RecyclerView.Adapter<SearchResultAdapter.RowViewHolder>() {
 
     private var searchResults = emptyList<Food>()
 
