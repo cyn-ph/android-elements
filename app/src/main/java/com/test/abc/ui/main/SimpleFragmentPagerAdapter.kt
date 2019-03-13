@@ -12,7 +12,7 @@ class SimpleFragmentPagerAdapter(fragmentManager: FragmentManager) :
         when (position) {
             0 -> return SearchFragment()
             1 -> return OfflineFragment()
-            else -> throw RuntimeException("This is not possible")
+            else -> throw IllegalStateException("This is not possible")
         }
     }
 

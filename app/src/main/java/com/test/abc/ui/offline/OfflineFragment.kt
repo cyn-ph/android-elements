@@ -1,7 +1,6 @@
 package com.test.abc.ui.offline
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -35,12 +34,11 @@ class OfflineFragment : Fragment() {
 
     private fun subscribeToModel(viewModel: MainViewModel) {
         viewModel.offlineFood.observe(this, Observer<List<FoodEntity>> { result ->
-            Log.d("OFFLINE", "update list with ${result!!.size}")
             viewAdapter.updateElements(result)
         })
 
-        viewModel.loading.observe(this, Observer<Int> {
-            progress.visibility = it!!
+        viewModel.loading.observe(this, Observer<Int> { loading ->
+            progress.visibility = loading!!
         })
     }
 

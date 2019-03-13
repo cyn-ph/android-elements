@@ -1,7 +1,6 @@
 package com.test.abc.data
 
 import android.content.Context
-import android.util.Log
 import com.test.abc.beans.Food
 import com.test.abc.beans.FoodDAO
 import com.test.abc.beans.FoodResponse
@@ -46,7 +45,6 @@ class FoodRepository(context: Context) {
     }
 
     fun parse(food: Food): FoodEntity {
-        Log.d("OFFLINE", "parse")
         val foodEntityBuilder = FoodEntity.Builder(food.id, food.title)
 
         foodEntityBuilder.setCategory(food.category)

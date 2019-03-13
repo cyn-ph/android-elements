@@ -1,7 +1,6 @@
 package com.test.abc.ui.main
 
 import android.content.Context
-import android.util.Log
 import android.view.View
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -23,7 +22,6 @@ class MainViewModel : ViewModel() {
     }
 
     fun searchFood(query: String) {
-        Log.d("SEARCH", query)
         loading.value = View.VISIBLE
 
         foodRespository.searchFood(query)
@@ -31,13 +29,10 @@ class MainViewModel : ViewModel() {
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(
                 { result ->
-                    Log.d("SEARCH", "on success with ${result.foodList.size}")
                     searchResult.value = result.foodList
                     loading.value = View.INVISIBLE
-
                 },
                 { error ->
-                    Log.e("SEARCH", error.message, error)
                     loading.value = View.INVISIBLE
                 }
             )
@@ -47,18 +42,19 @@ class MainViewModel : ViewModel() {
         foodRespository.saveFood(food)
             .subscribeOn(Schedulers.io())
             .subscribe()
-        Log.d("OFFLINE", "add food ${food.title}, total ${offlineFood.value!!.size}")
     }
 
     fun getAllSavedFood() {
+        loading.value = View.VISIBLE
+
         foodRespository.getAllSavedFood()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({ savedFood ->
-                Log.d("OFFLINE", "on success with ${savedFood.size}")
                 offlineFood.value = savedFood
+                loading.value = View.INVISIBLE
             }, { error ->
-                Log.e("OFFLINE", error.message, error)
+                loading.value = View.INVISIBLE
             })
     }
 

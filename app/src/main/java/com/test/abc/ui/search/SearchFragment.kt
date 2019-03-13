@@ -1,7 +1,6 @@
 package com.test.abc.ui.search
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -41,7 +40,6 @@ class SearchFragment : Fragment() {
 
     private fun subscribeToModel(viewModel: MainViewModel) {
         viewModel.searchResult.observe(this, Observer<List<Food>> { result ->
-            Log.d("SEARCH", "update list with ${result!!.size}")
             viewAdapter.updateElements(result)
         })
 
@@ -63,7 +61,6 @@ class SearchFragment : Fragment() {
 
         val button = view.findViewById<Button>(R.id.btn_search)
         button.setOnClickListener {
-            Log.d("SEARCH", "btn search on click")
             viewModel.searchFood(editText.text.toString())
         }
 
