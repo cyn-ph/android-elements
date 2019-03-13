@@ -1,0 +1,4 @@
+CREATE TABLE food (
+  id INTEGER NOT NULL,
+  title TEXT NOT NULL
+);
