@@ -6,11 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import com.test.abc.R
-import com.test.abc.beans.FoodDAO
+import com.test.abc.data.FoodEntity
 
 class OfflineAdapter : RecyclerView.Adapter<OfflineAdapter.RowViewHolder>() {
 
-    private var offlineItems = emptyList<FoodDAO>()
+    private var offlineItems = emptyList<FoodEntity>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): OfflineAdapter.RowViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.offline_item, parent, false)
@@ -25,7 +25,7 @@ class OfflineAdapter : RecyclerView.Adapter<OfflineAdapter.RowViewHolder>() {
         holder.foodCategory.text = offlineItems.get(position).category
     }
 
-    fun updateElements(newItems: List<FoodDAO>) {
+    fun updateElements(newItems: List<FoodEntity>) {
         offlineItems = newItems
         notifyDataSetChanged()
     }

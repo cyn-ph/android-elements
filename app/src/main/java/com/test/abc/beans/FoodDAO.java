@@ -1,81 +1,28 @@
 package com.test.abc.beans;
 
-public class FoodDAO {
+import android.arch.persistence.room.Dao;
+import android.arch.persistence.room.Insert;
+import android.arch.persistence.room.OnConflictStrategy;
+import android.arch.persistence.room.Query;
+import com.test.abc.data.FoodEntity;
+import io.reactivex.Completable;
+import io.reactivex.Single;
 
-    private Long id;
-    private String category;
-    private String title;
+import java.util.List;
 
-    private Double fat;
-    private Double saturatedFat;
-    private Double unsaturatedFat;
-    private Integer calories;
-    private Double fiber;
-    private Double potassium;
-    private Double sugar;
-    private Double protein;
-    private Double cholesterol;
-    private Double sodium;
-    private Double carbohydrates;
+@Dao
+public interface FoodDAO {
 
-    public FoodDAO(String category, String title) {
-        this.category = category;
-        this.title = title;
-    }
+    /**
+     * Get food from the table.
+     */
+    @Query("SELECT * FROM Food")
+    Single<List<FoodEntity>> getAll();
 
-    public Long getId() {
-        return id;
-    }
+    /**
+     * Insert food in the database. If the user already exists, replace it.
+     */
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    Completable insertFood(FoodEntity food);
 
-    public String getCategory() {
-        return category;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public Double getFat() {
-        return fat;
-    }
-
-    public Double getSaturatedFat() {
-        return saturatedFat;
-    }
-
-    public Double getUnsaturatedFat() {
-        return unsaturatedFat;
-    }
-
-    public Integer getCalories() {
-        return calories;
-    }
-
-    public Double getFiber() {
-        return fiber;
-    }
-
-    public Double getPotassium() {
-        return potassium;
-    }
-
-    public Double getSugar() {
-        return sugar;
-    }
-
-    public Double getProtein() {
-        return protein;
-    }
-
-    public Double getCholesterol() {
-        return cholesterol;
-    }
-
-    public Double getSodium() {
-        return sodium;
-    }
-
-    public Double getCarbohydrates() {
-        return carbohydrates;
-    }
 }
