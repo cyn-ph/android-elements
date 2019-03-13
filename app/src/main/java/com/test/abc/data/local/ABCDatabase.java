@@ -22,5 +22,5 @@ public abstract class ABCDatabase extends RoomDatabase {
         return INSTANCE;
     }
 
-    public abstract FoodDAO userDao();
+    public abstract FoodDAO foodDao();
 }
