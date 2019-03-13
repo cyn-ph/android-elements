@@ -3,7 +3,13 @@ package com.test.abc.data.mappers;
 import com.test.abc.data.local.FoodEntity;
 import com.test.abc.data.remote.Food;
 
+import javax.inject.Inject;
+
 public class FoodMapper {
+
+    @Inject
+    public FoodMapper() {
+    }
 
     public FoodEntity toFoodEntity(Food food) {
         FoodEntity.Builder foodEntityBuilder = new FoodEntity.Builder(food.getId(), food.getTitle());

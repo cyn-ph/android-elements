@@ -1,6 +1,5 @@
 package com.test.abc.ui.main
 
-import android.content.Context
 import android.view.View
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -9,17 +8,16 @@ import com.test.abc.data.local.FoodEntity
 import com.test.abc.data.remote.Food
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
+import javax.inject.Inject
 
-class MainViewModel : ViewModel() {
+class MainViewModel
+@Inject constructor(foodRepository: FoodRepository) : ViewModel() {
+
+    private val foodRespository = foodRepository
 
     val searchResult = MutableLiveData<List<Food>>()
     val offlineFood = MutableLiveData<List<FoodEntity>>()
     val loading = MutableLiveData<Int>()
-    private lateinit var foodRespository: FoodRepository
-
-    fun init(context: Context) {
-        foodRespository = FoodRepository(context)
-    }
 
     fun searchFood(query: String) {
         loading.value = View.VISIBLE

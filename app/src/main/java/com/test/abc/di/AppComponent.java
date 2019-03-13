@@ -8,7 +8,7 @@ import dagger.android.AndroidInjector;
 import javax.inject.Singleton;
 
 @Singleton
-@Component(modules = AppModule.class)
+@Component(modules = {AppModule.class})
 interface AppComponent extends AndroidInjector<ABCApplication> {
 
     @Component.Builder
