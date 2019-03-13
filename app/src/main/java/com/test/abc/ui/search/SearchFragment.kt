@@ -32,6 +32,8 @@ class SearchFragment : Fragment() {
             ViewModelProviders.of(this).get(MainViewModel::class.java)
         } ?: throw Exception("Invalid Activity")
 
+        viewModel.init(context!!.applicationContext)
+
         viewAdapter = SearchResultAdapter(viewModel)
 
         subscribeToModel(viewModel)
