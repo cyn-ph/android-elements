@@ -1,4 +1,4 @@
-package com.test.abc.ui.search
+package com.test.abc.ui.offline
 
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
@@ -10,20 +10,16 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.EditText
 import android.widget.ProgressBar
 import com.test.abc.R
-import com.test.abc.beans.Food
+import com.test.abc.beans.FoodDAO
 import com.test.abc.ui.main.MainViewModel
 
-
-class SearchFragment : Fragment() {
+class OfflineFragment : Fragment() {
 
     private lateinit var viewModel: MainViewModel
     private lateinit var progress: ProgressBar
-    private lateinit var viewAdapter: SearchResultAdapter
-
+    private var viewAdapter = OfflineAdapter()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,14 +28,12 @@ class SearchFragment : Fragment() {
             ViewModelProviders.of(this).get(MainViewModel::class.java)
         } ?: throw Exception("Invalid Activity")
 
-        viewAdapter = SearchResultAdapter(viewModel)
-
         subscribeToModel(viewModel)
     }
 
     private fun subscribeToModel(viewModel: MainViewModel) {
-        viewModel.searchResult.observe(this, Observer<List<Food>> { result ->
-            Log.d("SEARCH", "update list with ${result!!.size}")
+        viewModel.offlineFood.observe(this, Observer<List<FoodDAO>> { result ->
+            Log.d("OFFLINE", "update list with ${result!!.size}")
             viewAdapter.updateElements(result)
         })
 
@@ -49,7 +43,7 @@ class SearchFragment : Fragment() {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_search, container, false);
+        return inflater.inflate(R.layout.fragment_offline, container, false);
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -57,20 +51,10 @@ class SearchFragment : Fragment() {
 
         progress = view.findViewById(R.id.progress)
 
-        val editText = view.findViewById<EditText>(R.id.edit_search)
-
-        val button = view.findViewById<Button>(R.id.btn_search)
-        button.setOnClickListener {
-            Log.d("SEARCH", "btn search on click")
-            viewModel.searchFood(editText.text.toString())
-        }
-
-        view.findViewById<RecyclerView>(R.id.search_result).apply {
+        view.findViewById<RecyclerView>(R.id.offline_items).apply {
             setHasFixedSize(true)
             layoutManager = LinearLayoutManager(context)
             adapter = viewAdapter
         }
-
     }
-
 }

@@ -8,8 +8,9 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.test.abc.R
 import com.test.abc.beans.Food
+import com.test.abc.ui.main.MainViewModel
 
-class SearchResultAdapter : RecyclerView.Adapter<SearchResultAdapter.RowViewHolder>() {
+class SearchResultAdapter(val viewModel: MainViewModel) : RecyclerView.Adapter<SearchResultAdapter.RowViewHolder>() {
 
     private var searchResults = emptyList<Food>()
 
@@ -23,7 +24,7 @@ class SearchResultAdapter : RecyclerView.Adapter<SearchResultAdapter.RowViewHold
     override fun onBindViewHolder(holder: RowViewHolder, position: Int) {
         holder.foodTitle.text = searchResults.get(position).title
         holder.btnSave.setOnClickListener {
-            // TODO
+            viewModel.saveFood(searchResults.get(position))
         }
     }
 
