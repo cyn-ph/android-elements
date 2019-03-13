@@ -1,4 +1,4 @@
-package com.test.abc.beans;
+package com.test.abc.data.remote;
 
 import com.google.gson.annotations.SerializedName;
 

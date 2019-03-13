@@ -1,9 +1,13 @@
 package com.test.abc.data
 
 import android.content.Context
-import com.test.abc.beans.Food
-import com.test.abc.beans.FoodDAO
-import com.test.abc.beans.FoodResponse
+import com.test.abc.data.local.ABCDatabase
+import com.test.abc.data.local.FoodDAO
+import com.test.abc.data.local.FoodEntity
+import com.test.abc.data.mappers.FoodMapper
+import com.test.abc.data.remote.Food
+import com.test.abc.data.remote.FoodAPI
+import com.test.abc.data.remote.FoodResponse
 import io.reactivex.Completable
 import io.reactivex.Observable
 import io.reactivex.Single
@@ -16,6 +20,7 @@ class FoodRepository(context: Context) {
 
     private var foodAPI: FoodAPI
     private var foodDAO: FoodDAO
+    private val foodMapper = FoodMapper()
 
     init {
         val retrofit = Retrofit.Builder()
@@ -37,31 +42,11 @@ class FoodRepository(context: Context) {
 //        Observable.just(food)
 //            .map { food -> parse(food) }
 //            .mergeWith(foodDAO.insertFood(parse(food)))
-        return foodDAO.insertFood(parse(food))
+        return foodDAO.insertFood(foodMapper.toFoodEntity(food))
     }
 
     fun getAllSavedFood(): Single<List<FoodEntity>> {
         return foodDAO.all
     }
 
-    fun parse(food: Food): FoodEntity {
-        val foodEntityBuilder = FoodEntity.Builder(food.id, food.title)
-
-        foodEntityBuilder.setCategory(food.category)
-        foodEntityBuilder.setBrand(food.brand)
-        foodEntityBuilder.setFat(food.fat)
-        foodEntityBuilder.setSaturatedFat(food.saturatedFat)
-        foodEntityBuilder.setUnsaturatedFat(food.unsaturatedFat)
-        foodEntityBuilder.setCalories(food.calories)
-        foodEntityBuilder.setFiber(food.fiber)
-        foodEntityBuilder.setPotassium(food.potassium)
-        foodEntityBuilder.setSugar(food.sugar)
-        foodEntityBuilder.setProtein(food.protein)
-        foodEntityBuilder.setCholesterol(food.cholesterol)
-        foodEntityBuilder.setSodium(food.sodium)
-        foodEntityBuilder.setCarbohydrates(food.carbohydrates)
-
-
-        return foodEntityBuilder.build()
-    }
 }

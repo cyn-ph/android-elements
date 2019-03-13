@@ -1,10 +1,9 @@
-package com.test.abc.data;
+package com.test.abc.data.local;
 
 import android.content.Context;
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
-import com.test.abc.beans.FoodDAO;
 
 @Database(entities = {FoodEntity.class}, version = 1)
 public abstract class ABCDatabase extends RoomDatabase {

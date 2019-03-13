@@ -11,7 +11,7 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.test.abc.R
-import com.test.abc.data.FoodEntity
+import com.test.abc.data.local.FoodEntity
 import com.test.abc.ui.main.MainViewModel
 
 class OfflineFragment : Fragment() {

@@ -1,4 +1,4 @@
-package com.test.abc.data;
+package com.test.abc.data.local;
 
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;

@@ -4,9 +4,9 @@ import android.content.Context
 import android.view.View
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.test.abc.beans.Food
-import com.test.abc.data.FoodEntity
 import com.test.abc.data.FoodRepository
+import com.test.abc.data.local.FoodEntity
+import com.test.abc.data.remote.Food
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 

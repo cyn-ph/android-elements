@@ -1,6 +1,5 @@
-package com.test.abc.data;
+package com.test.abc.data.remote;
 
-import com.test.abc.beans.FoodResponse;
 import io.reactivex.Observable;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
