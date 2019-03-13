@@ -1,11 +1,11 @@
 package com.test.abc.ui.search
 
-import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.recyclerview.widget.RecyclerView
 import com.test.abc.R
 import com.test.abc.beans.Food
 import com.test.abc.ui.main.MainViewModel
@@ -37,6 +37,5 @@ class SearchResultAdapter(val viewModel: MainViewModel) : RecyclerView.Adapter<S
         val foodTitle = row.findViewById<TextView>(R.id.food_title)
         val btnSave = row.findViewById<ImageView>(R.id.btn_save)
     }
-
 
 }

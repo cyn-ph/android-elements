@@ -1,10 +1,10 @@
 package com.test.abc.ui.main
 
-import android.arch.lifecycle.MutableLiveData
-import android.arch.lifecycle.ViewModel
 import android.content.Context
 import android.util.Log
 import android.view.View
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import com.test.abc.beans.Food
 import com.test.abc.data.FoodEntity
 import com.test.abc.data.FoodRepository

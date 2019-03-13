@@ -1,9 +1,12 @@
 package com.test.abc.ui.main
 
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import com.test.abc.ui.offline.OfflineFragment
 import com.test.abc.ui.search.SearchFragment
 
-class SimpleFragmentPagerAdapter(fragmentManager: FragmentManager) : FragmentPagerAdapter(fragmentManager) {
+class SimpleFragmentPagerAdapter(fragmentManager: FragmentManager) :
+    androidx.fragment.app.FragmentPagerAdapter(fragmentManager) {
 
     override fun getItem(position: Int): Fragment {
         when (position) {
