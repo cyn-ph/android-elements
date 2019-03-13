@@ -7,7 +7,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.test.abc.R
-import com.test.abc.beans.Food
+import com.test.abc.data.remote.Food
 import com.test.abc.ui.main.MainViewModel
 
 class SearchResultAdapter(val viewModel: MainViewModel) : RecyclerView.Adapter<SearchResultAdapter.RowViewHolder>() {

@@ -1,10 +1,9 @@
-package com.test.abc.beans;
+package com.test.abc.data.local;
 
 import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
-import com.test.abc.data.FoodEntity;
 import io.reactivex.Completable;
 import io.reactivex.Single;
 
