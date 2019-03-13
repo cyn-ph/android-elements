@@ -16,7 +16,7 @@
     <EditText
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:hint="what do you want to search"
+            android:hint="@string/hint_search"
             android:inputType="text"
             android:layout_margin="16dp"
             android:id="@+id/edit_search"
@@ -24,13 +24,13 @@
             app:layout_constraintTop_toTopOf="parent"
             android:layout_marginEnd="8dp" app:layout_constraintEnd_toStartOf="@+id/btn_search"/>
 
-    <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Search"
+    <ImageView
+            android:layout_width="48dp"
+            android:layout_height="48dp"
             android:id="@+id/btn_search"
             android:layout_gravity="center"
             android:layout_margin="16dp"
+            android:src="@drawable/ic_search_black_24dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
 
