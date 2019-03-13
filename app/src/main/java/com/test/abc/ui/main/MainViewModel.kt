@@ -41,7 +41,12 @@ class MainViewModel : ViewModel() {
     fun saveFood(food: Food) {
         foodRespository.saveFood(food)
             .subscribeOn(Schedulers.io())
-            .subscribe()
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({
+                getAllSavedFood()
+            }, {
+                // TODO : Handle error
+            })
     }
 
     fun getAllSavedFood() {
