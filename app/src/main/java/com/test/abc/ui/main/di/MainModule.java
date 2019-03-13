@@ -1,5 +1,6 @@
 package com.test.abc.ui.main.di;
 
+import android.content.res.Resources;
 import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProviders;
 import com.test.abc.ui.main.MainActivity;
@@ -40,4 +41,9 @@ public abstract class MainModule {
 
     @ContributesAndroidInjector()
     abstract OfflineFragment contributeWithOfflineFragment();
+
+    @Provides
+    static Resources providesResources(MainActivity activity) {
+        return activity.getResources();
+    }
 }

@@ -31,7 +31,6 @@ class MainActivity : AppCompatActivity(), HasSupportFragmentInjector {
 
         val tabs = findViewById<TabLayout>(R.id.tabs)
         tabs.setupWithViewPager(viewPager)
-
     }
 
     override fun supportFragmentInjector(): AndroidInjector<androidx.fragment.app.Fragment> {

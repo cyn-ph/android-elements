@@ -5,8 +5,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.ProgressBar
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -57,11 +57,11 @@ class SearchFragment : Fragment() {
 
         progress = view.findViewById(R.id.progress)
 
-        val editText = view.findViewById<EditText>(R.id.edit_search)
+        val searchEdit = view.findViewById<EditText>(R.id.edit_search)
 
-        val button = view.findViewById<Button>(R.id.btn_search)
-        button.setOnClickListener {
-            viewModel.searchFood(editText.text.toString())
+        val searchButton = view.findViewById<ImageView>(R.id.btn_search)
+        searchButton.setOnClickListener {
+            viewModel.searchFood(searchEdit.text.toString())
         }
 
         view.findViewById<RecyclerView>(R.id.search_result).apply {
