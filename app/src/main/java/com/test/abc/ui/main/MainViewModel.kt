@@ -7,6 +7,7 @@ import com.test.abc.data.FoodRepository
 import com.test.abc.data.local.FoodEntity
 import com.test.abc.data.remote.Food
 import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
@@ -18,11 +19,12 @@ class MainViewModel
     val searchResult = MutableLiveData<List<Food>>()
     val offlineFood = MutableLiveData<List<FoodEntity>>()
     val loading = MutableLiveData<Int>()
+    val disposables = mutableListOf<Disposable>()
 
     fun searchFood(query: String) {
         loading.value = View.VISIBLE
 
-        foodRespository.searchFood(query)
+        val searchDisposable = foodRespository.searchFood(query)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(
@@ -34,10 +36,11 @@ class MainViewModel
                     loading.value = View.INVISIBLE
                 }
             )
+        disposables.add(searchDisposable)
     }
 
     fun saveFood(food: Food) {
-        foodRespository.saveFood(food)
+        val saveDisposable = foodRespository.saveFood(food)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
@@ -45,12 +48,13 @@ class MainViewModel
             }, {
                 // TODO : Handle error
             })
+        disposables.add(saveDisposable)
     }
 
     fun getAllSavedFood() {
         loading.value = View.VISIBLE
 
-        foodRespository.getAllSavedFood()
+        val getSavedFoodDisposable = foodRespository.getAllSavedFood()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({ savedFood ->
@@ -59,6 +63,19 @@ class MainViewModel
             }, { error ->
                 loading.value = View.INVISIBLE
             })
+
+        disposables.add(getSavedFoodDisposable)
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        diposeSubscriptions(disposables)
+    }
+
+    private fun diposeSubscriptions(disposables: MutableList<Disposable>) {
+        for (d in disposables) {
+            d.dispose()
+        }
     }
 
 }
