@@ -5,6 +5,7 @@ import android.arch.lifecycle.ViewModel
 import android.util.Log
 import android.view.View
 import com.test.abc.beans.Food
+import com.test.abc.beans.FoodDAO
 import com.test.abc.data.FoodRepository
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -12,6 +13,7 @@ import io.reactivex.schedulers.Schedulers
 class MainViewModel : ViewModel() {
 
     val searchResult = MutableLiveData<List<Food>>()
+    val offlineFood = MutableLiveData<List<FoodDAO>>()
     val loading = MutableLiveData<Int>()
 
     val foodRespository = FoodRepository()
@@ -36,4 +38,10 @@ class MainViewModel : ViewModel() {
                 }
             )
     }
+
+    fun saveFood(food: Food) {
+        offlineFood.value = foodRespository.saveFood(food)
+        Log.d("OFFLINE", "add food ${food.title}, total ${offlineFood.value!!.size}")
+    }
+
 }
