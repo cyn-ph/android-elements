@@ -12,7 +12,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ProgressBar
 import com.test.abc.R
-import com.test.abc.beans.FoodDAO
+import com.test.abc.data.FoodEntity
 import com.test.abc.ui.main.MainViewModel
 
 class OfflineFragment : Fragment() {
@@ -32,7 +32,7 @@ class OfflineFragment : Fragment() {
     }
 
     private fun subscribeToModel(viewModel: MainViewModel) {
-        viewModel.offlineFood.observe(this, Observer<List<FoodDAO>> { result ->
+        viewModel.offlineFood.observe(this, Observer<List<FoodEntity>> { result ->
             Log.d("OFFLINE", "update list with ${result!!.size}")
             viewAdapter.updateElements(result)
         })

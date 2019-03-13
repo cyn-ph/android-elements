@@ -64,7 +64,123 @@ public class Food {
     @SerializedName("saturatedfat")
     private Double saturatedFat;
 
+    public Double getFat() {
+        return fat;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public Integer getCalories() {
+        return calories;
+    }
+
+    public Double getFiber() {
+        return fiber;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public Integer getTypeOfMeasurement() {
+        return typeOfMeasurement;
+    }
+
+    public Double getPotassium() {
+        return potassium;
+    }
+
     public String getTitle() {
         return title;
+    }
+
+    public Integer getGramsPerServing() {
+        return gramsPerServing;
+    }
+
+    public Long getHeadCategoryId() {
+        return headCategoryId;
+    }
+
+    public Integer getServingVersion() {
+        return servingVersion;
+    }
+
+    public String getPcsText() {
+        return pcsText;
+    }
+
+    public Double getSugar() {
+        return sugar;
+    }
+
+    public Double getMlInGram() {
+        return mlInGram;
+    }
+
+    public Double getProtein() {
+        return protein;
+    }
+
+    public Boolean getVerified() {
+        return verified;
+    }
+
+    public String getBrand() {
+        return brand;
+    }
+
+    public Double getPcsInGram() {
+        return pcsInGram;
+    }
+
+    public Integer getDefaultServing() {
+        return defaultServing;
+    }
+
+    public Double getCholesterol() {
+        return cholesterol;
+    }
+
+    public Integer getShowOnlySameType() {
+        return showOnlySameType;
+    }
+
+    public Double getSodium() {
+        return sodium;
+    }
+
+    public Integer getShowMeasurement() {
+        return showMeasurement;
+    }
+
+    public Double getUnsaturatedFat() {
+        return unsaturatedFat;
+    }
+
+    public Long getMeasurementId() {
+        return measurementId;
+    }
+
+    public Long getCategoryId() {
+        return categoryId;
+    }
+
+    public Integer getServingCategory() {
+        return servingCategory;
+    }
+
+    public Double getCarbohydrates() {
+        return carbohydrates;
+    }
+
+    public String getValidNutrition() {
+        return validNutrition;
+    }
+
+    public Double getSaturatedFat() {
+        return saturatedFat;
     }
 }

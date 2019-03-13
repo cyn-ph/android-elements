@@ -2,21 +2,22 @@ package com.test.abc.ui.main
 
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
+import android.content.Context
 import android.util.Log
 import android.view.View
 import com.test.abc.beans.Food
-import com.test.abc.beans.FoodDAO
+import com.test.abc.data.FoodEntity
 import com.test.abc.data.FoodRepository
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
-class MainViewModel : ViewModel() {
+class MainViewModel(context: Context) : ViewModel() {
 
     val searchResult = MutableLiveData<List<Food>>()
-    val offlineFood = MutableLiveData<List<FoodDAO>>()
+    val offlineFood = MutableLiveData<List<FoodEntity>>()
     val loading = MutableLiveData<Int>()
 
-    val foodRespository = FoodRepository()
+    val foodRespository = FoodRepository(context)
 
     fun searchFood(query: String) {
         Log.d("SEARCH", query)
@@ -40,8 +41,22 @@ class MainViewModel : ViewModel() {
     }
 
     fun saveFood(food: Food) {
-        offlineFood.value = foodRespository.saveFood(food)
+        foodRespository.saveFood(food)
+            .subscribeOn(Schedulers.io())
+            .subscribe()
         Log.d("OFFLINE", "add food ${food.title}, total ${offlineFood.value!!.size}")
+    }
+
+    fun getAllSavedFood() {
+        foodRespository.getAllSavedFood()
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({ savedFood ->
+                Log.d("OFFLINE", "on success with ${savedFood.size}")
+                offlineFood.value = savedFood
+            }, { error ->
+                Log.e("OFFLINE", error.message, error)
+            })
     }
 
 }
