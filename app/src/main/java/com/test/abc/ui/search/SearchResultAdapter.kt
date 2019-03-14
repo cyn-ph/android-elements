@@ -25,6 +25,8 @@ class SearchResultAdapter
 
     override fun onBindViewHolder(holder: RowViewHolder, position: Int) {
         holder.foodTitle.text = searchResults.get(position).title
+        holder.foodBrand.text = searchResults.get(position).brand
+        holder.foodCategory.text = searchResults.get(position).category
         holder.btnSave.setOnClickListener {
             viewModel.saveFood(searchResults.get(position))
         }
@@ -37,6 +39,8 @@ class SearchResultAdapter
 
     class RowViewHolder(row: View) : RecyclerView.ViewHolder(row) {
         val foodTitle = row.findViewById<TextView>(R.id.food_title)
+        val foodBrand = row.findViewById<TextView>(R.id.food_brand)
+        val foodCategory = row.findViewById<TextView>(R.id.food_category)
         val btnSave = row.findViewById<ImageView>(R.id.btn_save)
     }
 
