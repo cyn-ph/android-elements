@@ -27,16 +27,16 @@ class MainViewModel
         val searchDisposable = foodRespository.searchFood(query)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe(
-                { result ->
-                    searchResult.value = result.foodList
-                    loading.value = View.INVISIBLE
-                },
-                { error ->
-                    loading.value = View.INVISIBLE
-                }
-            )
-        disposables.add(searchDisposable)
+//            .subscribe(
+//                { result ->
+//                    searchResult.value = result.foodList
+//                    loading.value = View.INVISIBLE
+//                },
+//                { error ->
+//                    loading.value = View.INVISIBLE
+//                }
+//            )
+//        disposables.add(searchDisposable)
     }
 
     fun saveFood(food: Food) {

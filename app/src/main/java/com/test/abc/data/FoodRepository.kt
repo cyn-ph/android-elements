@@ -11,25 +11,25 @@ import io.reactivex.Observable
 import io.reactivex.Single
 import javax.inject.Inject
 
-class FoodRepository
+open class FoodRepository
 @Inject constructor(
     val foodAPI: FoodAPI,
     val foodDAO: FoodDAO,
     val foodMapper: FoodMapper
 ) {
 
-    fun searchFood(query: String): Observable<FoodResponse> {
+    open fun searchFood(query: String): Observable<FoodResponse> {
         return foodAPI.searchFood("es", "mx", query)
     }
 
-    fun saveFood(food: Food): Completable {
+    open fun saveFood(food: Food): Completable {
 //        Observable.just(food)
 //            .map { food -> parse(food) }
 //            .mergeWith(foodDAO.insertFood(parse(food)))
         return foodDAO.insertFood(foodMapper.toFoodEntity(food))
     }
 
-    fun getAllSavedFood(): Single<List<FoodEntity>> {
+    open fun getAllSavedFood(): Single<List<FoodEntity>> {
         return foodDAO.all
     }
 
