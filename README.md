@@ -9,4 +9,6 @@ The app was structured following MVVM desing pattern and was built using `ViewMo
 The data layer is using the respository pattern, to persist the data the app is using `Room` and to fetch it from the remote is using `Retrofit`
 
 To manage the dependencies between components we used Dagger and to comunicate the layers `RxJava2`
+
+App theme and some UI componentes are using Material Components 
  
