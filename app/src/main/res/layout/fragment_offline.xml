@@ -13,7 +13,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:visibility="invisible"
-            style="@android:style/Widget.Holo.Light.ProgressBar.Horizontal"/>
+            android:indeterminate="true"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"/>
 
 
 </FrameLayout>
