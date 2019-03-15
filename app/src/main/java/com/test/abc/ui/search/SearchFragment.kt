@@ -40,7 +40,7 @@ class SearchFragment : Fragment() {
 
     private fun subscribeToModel(viewModel: MainViewModel) {
         viewModel.searchResult.observe(this, Observer<List<Food>> { result ->
-            viewAdapter.updateElements(result)
+            viewAdapter.resetItemListWithAnimation(result)
         })
 
         viewModel.loading.observe(this, Observer<Int> {
@@ -64,7 +64,7 @@ class SearchFragment : Fragment() {
             viewModel.searchFood(searchEdit.text.toString())
         }
 
-        view.findViewById<RecyclerView>(R.id.search_result).apply {
+        val recyclerViewSearchResults = view.findViewById<RecyclerView>(R.id.search_result).apply {
             setHasFixedSize(true)
             layoutManager = LinearLayoutManager(context)
             adapter = viewAdapter
