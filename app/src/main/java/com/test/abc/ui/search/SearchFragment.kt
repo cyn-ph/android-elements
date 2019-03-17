@@ -5,13 +5,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.EditText
 import android.widget.ImageView
 import android.widget.ProgressBar
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.textfield.TextInputEditText
 import com.test.abc.R
 import com.test.abc.data.remote.Food
 import com.test.abc.ui.main.MainViewModel
@@ -40,7 +40,7 @@ class SearchFragment : Fragment() {
 
     private fun subscribeToModel(viewModel: MainViewModel) {
         viewModel.searchResult.observe(this, Observer<List<Food>> { result ->
-            viewAdapter.updateElements(result)
+            viewAdapter.resetItemListWithAnimation(result)
         })
 
         viewModel.loading.observe(this, Observer<Int> {
@@ -57,14 +57,14 @@ class SearchFragment : Fragment() {
 
         progress = view.findViewById(R.id.progress)
 
-        val searchEdit = view.findViewById<EditText>(R.id.edit_search)
+        val searchEdit = view.findViewById<TextInputEditText>(R.id.edit_search)
 
         val searchButton = view.findViewById<ImageView>(R.id.btn_search)
         searchButton.setOnClickListener {
             viewModel.searchFood(searchEdit.text.toString())
         }
 
-        view.findViewById<RecyclerView>(R.id.search_result).apply {
+        val recyclerViewSearchResults = view.findViewById<RecyclerView>(R.id.search_result).apply {
             setHasFixedSize(true)
             layoutManager = LinearLayoutManager(context)
             adapter = viewAdapter

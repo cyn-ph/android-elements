@@ -37,7 +37,7 @@ class OfflineFragment : Fragment() {
 
     private fun subscribeToModel(viewModel: MainViewModel) {
         viewModel.offlineFood.observe(this, Observer<List<FoodEntity>> { result ->
-            viewAdapter.updateElements(result)
+            viewAdapter.resetItemListWithAnimation(result)
         })
 
         viewModel.loading.observe(this, Observer<Int> { loading ->
