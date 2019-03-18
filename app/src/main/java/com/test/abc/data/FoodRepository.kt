@@ -23,10 +23,9 @@ class FoodRepository
     }
 
     fun saveFood(food: Food): Completable {
-//        Observable.just(food)
-//            .map { food -> parse(food) }
-//            .mergeWith(foodDAO.insertFood(parse(food)))
-        return foodDAO.insertFood(foodMapper.toFoodEntity(food))
+        return Observable.just(food)
+            .map { foodMapper.toFoodEntity(food) }
+            .flatMapCompletable { foodEntity -> foodDAO.insertFood(foodEntity) }
     }
 
     fun getAllSavedFood(): Single<List<FoodEntity>> {
