@@ -19,7 +19,7 @@ public interface FoodDAO {
     Single<List<FoodEntity>> getAll();
 
     /**
-     * Insert food in the database. If the user already exists, replace it.
+     * Insert food in the database. If the food already exists, replace it.
      */
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     Completable insertFood(FoodEntity food);
