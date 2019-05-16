@@ -12,23 +12,23 @@ import javax.inject.Inject
 class SimpleFragmentPagerAdapter
 @Inject constructor(
     fragmentManager: FragmentManager,
-    val searchFragment: SearchFragment,
-    val offlineFragment: OfflineFragment,
-    val resources: Resources
+    private val searchFragment: SearchFragment,
+    private val offlineFragment: OfflineFragment,
+    private val resources: Resources
 ) : FragmentPagerAdapter(fragmentManager) {
 
     override fun getItem(position: Int): Fragment {
-        when (position) {
-            0 -> return searchFragment
-            1 -> return offlineFragment
+        return when (position) {
+            0 -> searchFragment
+            1 -> offlineFragment
             else -> throw IllegalStateException("This is not possible")
         }
     }
 
     override fun getPageTitle(position: Int): CharSequence? {
-        when (position) {
-            0 -> return resources.getString(R.string.search)
-            1 -> return resources.getString(R.string.offline)
+        return when (position) {
+            0 -> resources.getString(R.string.search)
+            1 -> resources.getString(R.string.offline)
             else -> throw IllegalStateException("This is not possible")
         }
     }
