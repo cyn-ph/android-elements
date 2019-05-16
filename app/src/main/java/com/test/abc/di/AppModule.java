@@ -1,6 +1,7 @@
 package com.test.abc.di;
 
 import android.content.Context;
+import androidx.room.Room;
 import com.test.abc.ABCApplication;
 import com.test.abc.data.di.FoodRepositoryModule;
 import com.test.abc.data.local.ABCDatabase;
@@ -13,6 +14,8 @@ import dagger.android.support.AndroidSupportInjectionModule;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
+
+import javax.inject.Singleton;
 
 @Module(includes = {AndroidSupportInjectionModule.class,
         FoodRepositoryModule.class})
@@ -34,8 +37,11 @@ public abstract class AppModule {
 
 
     @Provides
+    @Singleton
     static ABCDatabase providesAbcDatabase(Context context) {
-        return ABCDatabase.getInstance(context);
+        return Room.databaseBuilder(context,
+                ABCDatabase.class, "ABC.db")
+                .build();
     }
 
     @ContributesAndroidInjector(modules = {MainModule.class})
