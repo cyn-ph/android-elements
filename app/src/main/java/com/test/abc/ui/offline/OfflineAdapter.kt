@@ -14,7 +14,7 @@ class OfflineAdapter
 
     private var offlineItems = emptyList<FoodEntity>()
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): OfflineAdapter.RowViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RowViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.offline_item, parent, false)
         return RowViewHolder(view)
     }
@@ -36,6 +36,5 @@ class OfflineAdapter
         val foodTitle = row.findViewById<TextView>(R.id.food_title)
         val foodCategory = row.findViewById<TextView>(R.id.food_category)
     }
-
 
 }

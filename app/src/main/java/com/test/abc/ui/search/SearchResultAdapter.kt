@@ -8,15 +8,15 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.test.abc.R
 import com.test.abc.data.remote.Food
-import com.test.abc.ui.main.MainViewModel
+import com.test.abc.ui.tabs.TabsViewModel
 import javax.inject.Inject
 
 class SearchResultAdapter
-@Inject constructor(val viewModel: MainViewModel) : RecyclerView.Adapter<SearchResultAdapter.RowViewHolder>() {
+@Inject constructor(val viewModel: TabsViewModel) : RecyclerView.Adapter<SearchResultAdapter.RowViewHolder>() {
 
     private var searchResults = emptyList<Food>()
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchResultAdapter.RowViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RowViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.search_item, parent, false)
         return RowViewHolder(view)
     }

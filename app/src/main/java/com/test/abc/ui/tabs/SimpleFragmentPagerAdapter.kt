@@ -1,4 +1,4 @@
-package com.test.abc.ui.main
+package com.test.abc.ui.tabs
 
 import android.content.res.Resources
 import androidx.fragment.app.Fragment

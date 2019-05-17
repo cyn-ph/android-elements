@@ -12,14 +12,14 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.test.abc.R
 import com.test.abc.data.local.FoodEntity
-import com.test.abc.ui.main.MainViewModel
+import com.test.abc.ui.tabs.TabsViewModel
 import dagger.android.support.AndroidSupportInjection
 import javax.inject.Inject
 
 class OfflineFragment : Fragment() {
 
     @Inject
-    lateinit var viewModel: MainViewModel
+    lateinit var viewModel: TabsViewModel
     @Inject
     lateinit var viewAdapter: OfflineAdapter
 
@@ -35,7 +35,7 @@ class OfflineFragment : Fragment() {
         subscribeToModel(viewModel)
     }
 
-    private fun subscribeToModel(viewModel: MainViewModel) {
+    private fun subscribeToModel(viewModel: TabsViewModel) {
         viewModel.offlineFood.observe(this, Observer<List<FoodEntity>> { result ->
             viewAdapter.updateElements(result)
         })

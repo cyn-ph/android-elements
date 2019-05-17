@@ -1,49 +1,9 @@
 package com.test.abc.ui.main.di;
 
-import android.content.res.Resources;
-import androidx.fragment.app.FragmentManager;
-import androidx.lifecycle.ViewModelProviders;
-import com.test.abc.ui.main.MainActivity;
-import com.test.abc.ui.main.MainViewModel;
-import com.test.abc.ui.main.MainViewModelFactory;
-import com.test.abc.ui.offline.OfflineFragment;
-import com.test.abc.ui.search.SearchFragment;
+import com.test.abc.ui.tabs.di.TabsAndroidInjector;
 import dagger.Module;
-import dagger.Provides;
-import dagger.android.ContributesAndroidInjector;
 
-@Module
-public abstract class MainModule {
+@Module(includes = {TabsAndroidInjector.class})
+public class MainModule {
 
-    @Provides
-    static FragmentManager providesFragmentManager(MainActivity activity) {
-        return activity.getSupportFragmentManager();
-    }
-
-    @Provides
-    static MainViewModel providesMainViewModel(MainActivity activity,
-                                               MainViewModelFactory viewModelFactory) {
-        return ViewModelProviders.of(activity, viewModelFactory).get(MainViewModel.class);
-    }
-
-    @Provides
-    static SearchFragment providesSearchFragment() {
-        return new SearchFragment();
-    }
-
-    @ContributesAndroidInjector()
-    abstract SearchFragment contributeWithSearchFragment();
-
-    @Provides
-    static OfflineFragment providesOfflineFragment() {
-        return new OfflineFragment();
-    }
-
-    @ContributesAndroidInjector()
-    abstract OfflineFragment contributeWithOfflineFragment();
-
-    @Provides
-    static Resources providesResources(MainActivity activity) {
-        return activity.getResources();
-    }
 }
