@@ -1,5 +1,6 @@
-package com.test.abc.ui.main
+package com.test.abc.ui.tabs
 
+import android.util.Log
 import android.view.View
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -11,7 +12,7 @@ import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
-class MainViewModel
+class TabsViewModel
 @Inject constructor(foodRepository: FoodRepository) : ViewModel() {
 
     private val foodRespository = foodRepository
@@ -34,6 +35,7 @@ class MainViewModel
                 },
                 { error ->
                     loading.value = View.INVISIBLE
+                    Log.e("TabsViewModel", "on searchFood", error)
                 }
             )
         disposables.add(searchDisposable)
@@ -62,6 +64,7 @@ class MainViewModel
                 loading.value = View.INVISIBLE
             }, { error ->
                 loading.value = View.INVISIBLE
+                Log.e("TabsViewModel", "on getAllSavedFood", error)
             })
 
         disposables.add(getSavedFoodDisposable)

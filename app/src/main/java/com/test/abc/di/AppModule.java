@@ -1,24 +1,20 @@
 package com.test.abc.di;
 
 import android.content.Context;
+import android.content.res.Resources;
 import androidx.room.Room;
 import com.test.abc.ABCApplication;
 import com.test.abc.data.di.FoodRepositoryModule;
 import com.test.abc.data.local.ABCDatabase;
-import com.test.abc.ui.main.MainActivity;
-import com.test.abc.ui.main.di.MainModule;
 import dagger.Module;
 import dagger.Provides;
-import dagger.android.ContributesAndroidInjector;
-import dagger.android.support.AndroidSupportInjectionModule;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 import javax.inject.Singleton;
 
-@Module(includes = {AndroidSupportInjectionModule.class,
-        FoodRepositoryModule.class})
+@Module(includes = {FoodRepositoryModule.class})
 public abstract class AppModule {
 
     @Provides
@@ -44,7 +40,9 @@ public abstract class AppModule {
                 .build();
     }
 
-    @ContributesAndroidInjector(modules = {MainModule.class})
-    abstract MainActivity contributeWithMainActivity();
+    @Provides
+    static Resources providesResources(ABCApplication abcApplication) {
+        return abcApplication.getResources();
+    }
 
 }
