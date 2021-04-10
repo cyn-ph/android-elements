@@ -1,11 +1,18 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+    <style name="AppTheme" parent="Theme.MaterialComponents.DayNight">
+        <item name="textInputStyle">@style/Test.MyTextInputLayout</item>
     </style>
 
+
+    <style name="Test.MyTextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.FilledBox">
+        <item name="materialThemeOverlay">@style/Test.Overlay.MyTextInputLayout</item>
+        <item name="boxBackgroundColor">@android:color/transparent</item>
+    </style>
+
+
+    <style name="Test.Overlay.MyTextInputLayout" parent="ThemeOverlay.MaterialComponents.TextInputEditText.FilledBox">
+        <item name="colorSurface">@android:color/transparent</item>
+    </style>
 </resources>
