@@ -1,13 +1,13 @@
 package com.test.abc.ui.main.di;
 
 import com.test.abc.ui.main.MainActivity;
+
 import dagger.Module;
 import dagger.android.ContributesAndroidInjector;
 
-@Module(includes = MainModule.class)
+@Module
 public abstract class MainAndroidInjector {
 
-    @ContributesAndroidInjector
+    @ContributesAndroidInjector(modules = MainModule.class)
     abstract MainActivity contributeWithMainActivity();
-
 }

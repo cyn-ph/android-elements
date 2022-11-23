@@ -60,9 +60,9 @@ dependencies {
     kapt "com.google.dagger:dagger-compiler:$dagger_version"
 
     // Dagger Android dependencies
-    implementation "com.google.dagger:dagger-android:$dagger_version"
-    implementation "com.google.dagger:dagger-android-support:$dagger_version"
-    kapt "com.google.dagger:dagger-android-processor:$dagger_version"
+    implementation "com.google.dagger:dagger-android:$dagger_android_version"
+    implementation "com.google.dagger:dagger-android-support:$dagger_android_version"
+    kapt "com.google.dagger:dagger-android-processor:$dagger_android_version"
 
     // Test
     testImplementation "junit:junit:$junit_version"
